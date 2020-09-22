@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 def tsv_to_dataset ():
     ''' Création des datasets originaux '''
@@ -10,8 +11,7 @@ def tsv_to_dataset ():
 
     akas.rename(columns={'titleId':'tconst'}, inplace = True)
     basics['genres'] = basics['genres'].str.split(pat=',')
-    basics['genres'].fillna('NC', inplace = True)
-
+ 
     return actors, principals, basics, akas, ratings
 
 
@@ -36,3 +36,19 @@ def req2 (akas, basics, ratings):
     df_rq2.to_csv('02_usfilm_ratings')
 
     return df_rq2
+
+
+def req3 (basics, ratings):
+    ''' Ratings by genre '''
+    df = pd.merge(basics, ratings, how='left', on='tconst')
+    df.dropna(subset=['averageRating'], inplace=True)
+    df.dropna(subset=['genres'], inplace=True)
+    df = pd.DataFrame({
+            col:np.repeat(df[col].values, df['genres'].str.len())
+            for col in df.columns.drop('genres')}
+        ).assign(**{'genres':np.concatenate(df['genres'].values)})[df.columns]
+    
+    df_rq3 = df.groupby('genres')['averageRating'].mean()
+    df_rq3.to_csv('03_ratings_by_genre')
+
+    return df_rq3
