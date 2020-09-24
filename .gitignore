@@ -1,0 +1,14 @@
+
+movies_dataset/
+
+01_actor_by_film
+
+02_usfilm_ratings
+
+03_ratings_by_genre
+
+.vscode/
+
+__pycache__/
+
+results/

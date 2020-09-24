@@ -8,7 +8,6 @@ import os
 
 def check_folder ():
     folder = './results'
-
     if not os.path.exists(folder):
         os.mkdir(folder)
 
@@ -29,11 +28,11 @@ def dl_datasets ():
 def tsv_to_dataset ():
     ''' Création des datasets originaux '''
     print ('Converting tsv files...')
-    actors = pd.read_csv('./movies_dataset/name.basics.tsv', sep = '\t', usecols=['nconst','primaryName'])
-    principals = pd.read_csv('./movies_dataset/title.principals.tsv', sep = '\t', usecols=['tconst','nconst','category'])
-    basics = pd.read_csv('./movies_dataset/title.basics.tsv', sep = '\t', usecols=['tconst','primaryTitle','originalTitle','genres'])
-    akas = pd.read_csv('./movies_dataset/title.akas.tsv', sep = '\t', usecols=['titleId','title','region','isOriginalTitle'])
-    ratings = pd.read_csv('./movies_dataset/title.ratings.tsv', sep = '\t', usecols=['tconst','averageRating'], dtype = {'averageRating':'float16'})
+    actors = pd.read_csv('./movies_dataset/name.basics.tsv', sep = '\t', usecols=['nconst','primaryName'], encoding='utf-8')
+    principals = pd.read_csv('./movies_dataset/title.principals.tsv', sep = '\t', usecols=['tconst','nconst','category'], encoding='utf-8')
+    basics = pd.read_csv('./movies_dataset/title.basics.tsv', sep = '\t', usecols=['tconst','primaryTitle','originalTitle','genres'], encoding='utf-8')
+    akas = pd.read_csv('./movies_dataset/title.akas.tsv', sep = '\t', usecols=['titleId','title','region','isOriginalTitle'], encoding='utf-8')
+    ratings = pd.read_csv('./movies_dataset/title.ratings.tsv', sep = '\t', usecols=['tconst','averageRating'], dtype = {'averageRating':'float16'}, encoding='utf-8')
 
     akas.rename(columns={'titleId':'tconst'}, inplace = True)
     basics['genres'] = basics['genres'].str.split(pat=',')
