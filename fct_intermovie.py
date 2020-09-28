@@ -55,7 +55,7 @@ def create_df ():
     '''
     Création des datasets originaux
     '''
-    print ('Converting tsv files...')
+    print ('\nConverting tsv files...')
     actors = pd.read_csv(f'{RAW_LOCAL_PATH}name.basics.tsv', sep = '\t', usecols=['nconst','primaryName'], encoding='utf-8')
     principals = pd.concat([
         pd.read_csv(f'{CURATED_LOCAL_PATH}PRINCIPALS_actor.csv', usecols=['tconst','nconst'], encoding='utf-8'),
