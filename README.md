@@ -6,9 +6,9 @@ They would like to be able to allow its users to receive recommendations of new 
 
 ### Requirements
 Download the repo.
-Create the environment by opening your Anaconda terminal in the repo path, and pass this command :
+In your environment, install the dependances with the requirement file :
 ```
-conda create --name Intermovie --file requirements.txt
+conda install --file requirements.txt
 ```
 
 ### Use
