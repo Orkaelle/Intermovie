@@ -88,7 +88,7 @@ def req1 (principals, basics, actors):
 
     print ('CSV file "01_actor_by_film" saved in the results folder.\n')
 
-    return df_rq1, df
+    return df_rq1
 
 
 def req2 (akas, basics, ratings):
@@ -114,7 +114,6 @@ def req3 (basics, ratings):
     '''
     print ('Rq 3 - Work in progress...')
     df = pd.merge(basics, ratings, on='tconst')
-    # df.dropna(subset=['averageRating'], inplace=True)
     df.dropna(subset=['genres'], inplace=True)
     df = pd.DataFrame({
             col:np.repeat(df[col].values, df['genres'].str.len())
